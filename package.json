@@ -1,0 +1,13 @@
+{
+    "name": "pc-parts",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "npm run start --prefix backend",
+      "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+    },
+    "engines": {
+      "node": "14.x"
+    },
+    "dependencies": {}
+  }
+  
