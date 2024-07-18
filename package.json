@@ -4,8 +4,8 @@
   "description": "Welcome to pcguide",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start-all",
-    "migrate": "cross-env DB_HOST=localhost DB_USER=admin_user DB_PASSWORD=admin1 DB_DATABASE=pcparts DB_PORT=5432 knex migrate:latest --knexfile knexfile.js",
+    "start": "npm start",
+    "migrate": "cross-env DB_HOST=c9mq4861d16jlm.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com DB_USER=u2g2p6dm3pllc5 DB_PASSWORD=p520631b10666dfb495d71958f8bda433f64e37a405f23baa0770648182f9db42 DB_DATABASE=d2a0pr2f6ec7up DB_PORT=5432 knex migrate:latest --knexfile knexfile.js",
     "frontend:build": "cd frontend && npm build",
     "frontend:start": "cd frontend && npm start",
     "backend:build": "cd backend && npm install",
