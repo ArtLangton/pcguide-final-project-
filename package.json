@@ -4,6 +4,7 @@
   "description": "Welcome to ShopNex, a cutting-edge online store web application built using the PERN (PostgreSQL, Express.js, React.js, Node.js) stack. ShopNex aims to provide an exceptional shopping experience for customers while offering a seamless platform for merchants to manage their online businesses. Whether you're a small boutique owner or an aspiring entrepreneur, ShopNex equips you with the tools needed to succeed in the competitive e-commerce landscape.",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build",
     "migrate": "cross-env DB_HOST=localhost DB_USER=admin_user DB_PASSWORD=admin1 DB_DATABASE=pcparts DB_PORT=5432 knex migrate:latest --knexfile knexfile.js",
     "frontend:build": "cd frontend && npm build",
     "frontend:start": "cd frontend && npm start",
