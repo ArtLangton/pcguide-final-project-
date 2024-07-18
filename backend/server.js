@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // Serve static files from the public directory
 const path = require("path");
-app.use(express.static(path.join(__dirname, 'public')));  // Added line
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -87,8 +87,8 @@ passport.deserializeUser(async (id, done) => {
 const authRoutes = require("./routes/routes");
 app.use("/auth", authRoutes);
 
-// Development and Production
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", function() {
-  console.log(`Listening on Port ${PORT}`);
+// Bind to the correct port for Heroku
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on port ${PORT}`);
 });
