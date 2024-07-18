@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --ignore ./view server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,6 @@
     "express-validator": "^7.0.1",
     "helmet": "^7.0.0",
     "knex": "^3.1.0",
-    "nodemon": "^3.0.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "pg": "^8.12.0"
