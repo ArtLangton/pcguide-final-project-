@@ -4,7 +4,7 @@
   "description": "Welcome to pcguide",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel start-backend start-frontend",
+    "start": "server.js",
     "migrate": "cross-env DB_HOST=localhost DB_USER=admin_user DB_PASSWORD=admin1 DB_DATABASE=pcparts DB_PORT=5432 knex migrate:latest --knexfile knexfile.js",
     "frontend:build": "cd frontend && npm build",
     "frontend:start": "cd frontend && npm start",
