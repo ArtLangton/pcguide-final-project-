@@ -9,6 +9,6 @@
     "engines": {
       "node": "14.x"
     },
-    "dependencies": {}
+    "dependencies": { "@babel/plugin-proposal-private-property-in-object": "^7.21.11" }
   }
   
