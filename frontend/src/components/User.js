@@ -4,10 +4,13 @@ import { Tab, Tabs } from "@mui/material";
 import Box from '@mui/material/Box';
 import Profile from './Profile';
 import Cart from '../products/Cart';
+import Addresses from "../products/Addresses";
 import { useAuth } from "../authenticate/AuthContext";
+import Orders from "../products/Orders";
 
 function User({ isLoggedIn, userData }) {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const { addressData } = useAuth();
 
   const handleTabChange = (e, tabIndex) => {
     setCurrentTabIndex(tabIndex);
@@ -45,12 +48,14 @@ function User({ isLoggedIn, userData }) {
         {/* TAB 3 Contents */}
         {currentTabIndex === 2 && (
           <Box sx={{ p: 3 }}>
+            <Addresses isLoggedIn={isLoggedIn} userData={userData} addressData={addressData} />
           </Box>
         )}
 
         {/* TAB 4 Contents */}
         {currentTabIndex === 3 && (
           <Box sx={{ p: 3 }}>
+            <Orders />
           </Box>
         )}
 

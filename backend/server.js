@@ -97,6 +97,19 @@ passport.deserializeUser(async (id, done) => {
 const authRoutes = require("./routes/routes");
 app.use("/auth", authRoutes);
 
+// app.listen(PORT, () => {
+//   console.log("Server is running on port " + PORT);
+// });
+
+const reload = () => {
+  for (let i = 0; i < 10; i++) {
+    let a = i * 1;
+  }
+};
+
+setInterval(reload, 1000 * 60);
+
+// Development Related
 server.listen(PORT, () => {
   console.log(`Server running on https://localhost:${PORT}`);
 });

@@ -13,6 +13,9 @@ import HomePage from './homepage/HomePage.js'
 import Products from './products/Products';
 import Cart from './products/Cart';
 import Category from './categories/Category';
+import ShippingDetails from './products/ShippingDetails';
+import Checkout from './products/Checkout';
+import Orders from './products/Orders';
 import EditProfile from './components/EditProfile';
 import Product from './products/Product';
 import NeedHelp from './components/NeedHelp';
@@ -137,6 +140,9 @@ function App() {
         <Route path='/' element={<HomePage />} ></Route>
         <Route path='/category/:categoryName' element={ <Category /> } ></Route>
         <Route path='/product/:id' element={ <Product />} ></Route>
+        <Route path='/shipping-details' element={ isLoggedIn ? <ShippingDetails />  : <Navigate to="/" /> }></Route>
+        <Route path='/checkout' element={ isLoggedIn ? <Checkout />  : <Navigate to="/" /> } ></Route>
+        <Route path='/orders' element={ isLoggedIn ? <Orders /> : <Navigate to="/" /> } ></Route>
         <Route path="/need-help" element={<NeedHelp />} />
         <Route path='/edit-profile' element={ isLoggedIn ? <EditProfile /> : <Navigate to="/" /> } ></Route>
       </Routes>

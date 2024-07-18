@@ -1,78 +1,34 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function CartCard({ item, deleteItem }) {
-  const cardStyle = {
-    border: "1px solid #ddd",
-    borderRadius: "5px",
-    padding: "10px",
-    maxWidth: "300px",
-    textAlign: "left",
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: "20px",
+function CartCard({ item, deleteItem, updateQuantityHandler }) {
+  const { product_id, name, price, quantity } = item;
+
+  const handleDelete = () => {
+    deleteItem(product_id);
   };
 
-  const contentStyle = {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: "10px",
+  const handleQuantityChange = (event) => {
+    updateQuantityHandler(product_id, parseInt(event.target.value));
   };
 
-  const imgStyle = {
-    maxWidth: "100px",
-    height: "100px",
-    objectFit: "contain",
-    marginBottom: "10px",
-  };
-
-  const detailsStyle = {
-    display: "flex",
-    flexDirection: "column",
-  };
-
-  const titleStyle = {
-    fontSize: "1.2em",
-    margin: "10px 0",
-  };
-
-  const priceStyle = {
-    fontSize: "1em",
-    margin: "10px 0",
-  };
-
-  const buttonStyle = {
-    backgroundColor: "#ff4d4d",
-    color: "white",
-    border: "none",
-    padding: "5px 10px",
-    cursor: "pointer",
-    borderRadius: "3px",
-  };
-
-  const linksStyle = {
-    marginTop: "10px",
-  };
-
-  const linkStyle = {
-    display: "block",
-    color: "#007bff",
-    textDecoration: "none",
-    margin: "5px 0",
-  };
+  const imageUrl = `/images/products/id${16 + (product_id - 135)}.png`;
 
   return (
-    <div className="product-card" id={`cart-item-${item.item_id}`} style={cardStyle}>
-      <div className="product-card-content" style={contentStyle}>
-        <div className="product-card-details" style={detailsStyle}>
-          <h3 className="product-card-title" style={titleStyle}>{item.name}</h3>
-          <p className="product-card-price" style={priceStyle}>${item.price}</p>
-          <button onClick={() => deleteItem(item.item_id)} className="product-card-button" style={buttonStyle}>Remove from wishlist</button>
-        </div>
-      </div>
-      <div className="product-card-links" style={linksStyle}>
-        {item.links && item.links.map((link, index) => (
-          <a href={link} key={index} className="product-card-link" style={linkStyle}>{link}</a>
-        ))}
+    <div className="cart-card">
+      <img src={imageUrl} alt={name} />
+      <div className="cart-card-info">
+        <Link to={`/product/${product_id}`}>
+          <h3>{name}</h3>
+        </Link>
+        <p>${price}</p>
+        <input
+          type="number"
+          value={quantity}
+          onChange={handleQuantityChange}
+          min="1"
+        />
+        <button onClick={handleDelete}>Remove</button>
       </div>
     </div>
   );

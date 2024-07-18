@@ -49,7 +49,6 @@ const getProducts = async (req, res) => {
         res.status(200).json(response);
     } catch (err) {
         console.log("Failed to get products", err);
-        res.status(500).json({ message: err.message });
     }
 };
 
@@ -58,14 +57,14 @@ const addToCart = async (req, res) => {
     const productCheck = await cartExists(user_id, product_id);
     if (productCheck.length > 0) {
         console.log("Product already in cart");
-        return res.status(409).send({ message: "Product already in cart" });
+        return res.send(false);
     } else {
         try {
             const response = await pushToCart(product_id, quantity, user_id);
             res.status(201).send(true);
         } catch (err) {
             console.log("Failed to push to cart items table", err);
-            res.status(500).send({ message: "Failed to add to cart" });
+            res.status(500).send(false);
         }
     }
 };
@@ -81,7 +80,7 @@ const checkCart = async (req, res) => {
         }
     } catch (err) {
         console.log("Failed to check if product exists in cart", err);
-        res.status(500).send({ message: "Failed to check cart" });
+        res.status(500).send(false);
     }
 };
 
@@ -96,7 +95,7 @@ const getCartItems = async (req, res) => {
         }
     } catch (err) {
         console.log("Failed to fetch cart items", err);
-        res.status(500).send({ message: "Failed to fetch cart items" });
+        res.status(500).send(false);
     }
 };
 

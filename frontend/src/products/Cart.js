@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import CartCard from "./CartCard";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { getCartItems, sumTotal, deleteCartItem, updateItemQuantity } from "../utils";
 import { useAuth } from "../authenticate/AuthContext";
 
-function Cart({ isLoggedIn, userData }) {
+function Cart() {
   const [cartChange, setCartChange] = useState(true);
-  const { cartTotal, setCartTotal, cartData, setCartData } = useAuth();
+  const { cartTotal, setCartTotal, cartData, setCartData, isLoggedIn, userData } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,58 +16,60 @@ function Cart({ isLoggedIn, userData }) {
       if (user_id) {
         getCartItems(user_id).then(response => {
           if (response === false) {
-            setCartData([]);
-          } else {
+            setCartData(0);
+          }
+          else {
             setCartTotal(sumTotal(response));
             setCartData(response);
           }
         }).catch(console.error);
       }
     }
-  }, [cartChange, isLoggedIn, userData, setCartData, setCartTotal]);
+  }, [cartChange, isLoggedIn, userData, setCartTotal, setCartData]);
 
   const deleteItem = async (item_id) => {
     const result = await deleteCartItem(userData.user_id, item_id);
     if (result === true) {
       setCartChange(!cartChange);
-    } else {
+    }
+    else {
       console.log('Failed to remove item from cart');
     }
-  };
+  }
 
   const updateQuantityHandler = async (item_id, quantity) => {
     const result = await updateItemQuantity(userData.user_id, item_id, quantity);
     if (result === true) {
       setCartChange(!cartChange);
-    } else {
+    }
+    else {
       console.log('Failed to change cart item quantity');
     }
-  };
+  }
 
   if (!isLoggedIn) {
     navigate("/login");
   }
-
   if (cartData === null) {
-    return <Loader />;
+    return <Loader />
   }
-
-  if (cartData.length === 0) {
-    return <h1 id="category-heading">Your wishlist is empty!</h1>;
+  if (cartData === 0) {
+    return <h1 id="category-heading">Your wishlist is empty!</h1>
   }
-
   return (
     <div className="cart-container">
       <h1>MY WISHLIST</h1>
-      <div className="product-grid">
-        {cartData.map((item, index) => (
-          <CartCard 
-            item={item} 
-            deleteItem={deleteItem} 
-            updateQuantityHandler={updateQuantityHandler} 
-            key={index} 
-          />
-        ))}
+      <div className="cart-items-grid">
+        {
+          cartData.map((item, index) => (
+            <CartCard
+              item={item}
+              deleteItem={deleteItem}
+              updateQuantityHandler={updateQuantityHandler}
+              key={index}
+            />
+          ))
+        }
       </div>
       <div className="cart-summary">
         <h2>Wishlist summary</h2>
@@ -75,7 +77,7 @@ function Cart({ isLoggedIn, userData }) {
           <tbody>
             <tr>
               <td><b>Total</b></td>
-              <td><b>${cartTotal.toFixed(2)}</b></td>
+              <td><b>${cartTotal.toFixed(2)} </b></td>
             </tr>
           </tbody>
         </table>

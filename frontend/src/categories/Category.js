@@ -4,7 +4,7 @@ import ProductCard from "../products/ProductCard";
 import { useAuth } from "../authenticate/AuthContext";
 import Loader from '../components/Loader';
 import { getCategoryProducts, capitalizeFirstLetter } from "../utils";
-import '../App.css'; 
+import '../App.css'; // Ensure this import is present
 
 function Category() {
     const { userData } = useAuth();
@@ -44,7 +44,7 @@ function Category() {
                                 key={product.product_id}
                                 imageIndex={product.product_id}
                                 userData={userData}
-                                style={{ maxWidth: '400px', maxHeight: '400px' }} 
+                                style={{ maxWidth: '400px', maxHeight: '400px' }} // Add style for max size
                             />
                         ))
                     ) : (

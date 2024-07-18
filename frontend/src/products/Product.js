@@ -46,7 +46,7 @@ function Product() {
                 if (response === true) {
                     setCartAdded(true);
                 } else {
-                    console.log("failed to add to wishlist");
+                    console.log("failed to add to cart");
                 }
             } catch (error) {
                 console.log(error);
@@ -90,9 +90,9 @@ function Product() {
                     <section id='product-control'>
                         {
                             cartAdded ?
-                                <button id="product-card-checkout-btn" onClick={() => navigate('/cart')}>GO TO WISHLIST</button>
+                                <button id="product-card-checkout-btn" onClick={() => navigate('/cart')}>PROCEED TO CHECKOUT</button>
                                 :
-                                <button className="button-37" onClick={addToCartHandler}>ADD TO WISHLIST</button>
+                                <button className="button-37" onClick={addToCartHandler}>ADD TO CART</button>
                         }
                     </section>
 

@@ -1,15 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const passport = require("passport");
-const { query, body, validationResult } = require('express-validator');
-const { registerRoute, isLoggedIn, getProducts, addToCart, checkCart, getCartItems, getCategoryProducts, removeCartItem, updateCartQuantity, getAddress, pushNewAddress, addNewOrder, getOrders, changeUserInfo } = require('./utils');
-const { loginInputValidate, LoginInputmiddleware, registerInputValidate, registerInputmiddleware } = require('./validation');
+const { query ,body, validationResult } = require('express-validator');
+const { registerRoute, isLoggedIn,getProducts,addToCart,checkCart
+  ,getCartItems,getCategoryProducts,removeCartItem,updateCartQuantity,getAddress,pushNewAddress,addNewOrder,getOrders,
+  changeUserInfo
+  } = require('./utils')
+const { loginInputValidate,LoginInputmiddleware,registerInputValidate,registerInputmiddleware } = require('./validation')
 
-router.get('/', (req, res) => {
+router.get('/',(req,res) =>{
   res.send('<h2>server is running on port 5000...</h2>')
-});
+})
 
-router.post('/login', loginInputValidate, LoginInputmiddleware, (req, res, next) => {
+router.post('/login',loginInputValidate,LoginInputmiddleware, (req, res, next) => {
+
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       return next(err);
@@ -28,7 +32,8 @@ router.post('/login', loginInputValidate, LoginInputmiddleware, (req, res, next)
   })(req, res, next);
 });
 
-router.post("/register", registerInputValidate, registerInputmiddleware, registerRoute);
+
+router.post("/register",registerInputValidate, registerInputmiddleware, registerRoute);
 
 router.get("/register", (req, res) => {
   res.send("Hello this is working");
@@ -36,37 +41,36 @@ router.get("/register", (req, res) => {
 
 router.get('/profile', isLoggedIn);
 
-router.post('/logout', function (req, res, next) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
+router.post('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { 
+      return next(err); 
     }
     res.status(200).send();
   });
 });
 
-router.put('/update-user-info', changeUserInfo);
+router.put('/update-user-info',changeUserInfo);
 
 router.get('/products', getProducts);
 
-router.post('/add-to-cart', addToCart);
+router.post('/add-to-cart',addToCart);
 
-router.get('/cart-check', checkCart);
+router.get('/cart-check',checkCart);
 
-router.get('/cart-items', getCartItems);
+router.get('/cart-items',getCartItems);
 
-router.get('/category-products', getCategoryProducts);
+router.get('/category-products',getCategoryProducts);
 
-router.delete('/cart-item', removeCartItem);
-
+router.delete('/cart-item',removeCartItem);
 router.put('/cart-quantity', updateCartQuantity);
 
-router.get('/get-address', getAddress);
+router.get('/get-address',getAddress);
 
-router.post('/add-address', pushNewAddress);
+router.post('/add-address',pushNewAddress);
 
-router.post('/add-new-order', addNewOrder);
+router.post('/add-new-order',addNewOrder);
 
-router.get('/get-orders', getOrders);
+router.get('/get-orders',getOrders);
 
 module.exports = router;

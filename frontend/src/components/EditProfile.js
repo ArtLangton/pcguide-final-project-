@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../authenticate/AuthContext'
-import Loader from './Loader'
+import Loader from '../components/Loader'
 import { useNavigate } from 'react-router-dom';
 import { changeUserInfo } from '../utils';
 

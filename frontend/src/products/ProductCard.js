@@ -51,7 +51,7 @@ function ProductCard({ product, imageIndex, userData }) {
             <p>{description}</p>
 
             {cartAdded ? (
-                <Link to="/user"><button id="product-card--btn">GO TO MY WISHLIST</button></Link>
+                <Link to="/user"><button id="product-card-checkout-btn">GO TO MY WISHLIST</button></Link>
             ) : (
                 <button id="product-card-btn" onClick={addToCartHandler}>TO WISHLIST</button>
             )}

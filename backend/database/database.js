@@ -4,11 +4,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: String(process.env.DB_PASSWORD),
+    port: process.env.DB_PORT,
 });
+
 const findByUsername = async (username) => {
     const query = 'SELECT * FROM users WHERE username = $1';
     const values = [username];
@@ -69,6 +71,7 @@ const addNewUser = async (userObj) => {
         else {
             return false;
         }
+
     } catch (err) {
         console.log('Error while querying the database:', err);
         throw err;
@@ -88,6 +91,7 @@ const updateUserInfo = async (email, password, fullname, user_id) => {
         else {
             return false;
         }
+
     } catch (err) {
         console.log('Error while updating user info', err);
         throw err;
@@ -246,58 +250,58 @@ const createNewOrder = async (user_id, shipping_address, cartData) => {
             const result1 = await pool.query(query1, values1);
 
             const order_id = result1.rows[0].order_id;
-let values2 = [order_id, item.product_id, item.quantity, subtotal];
-await pool.query(query2, values2);
-}
+            let values2 = [order_id, item.product_id, item.quantity, subtotal];
+            const result2 = await pool.query(query2, values2);
+        }
 
-const query3 = `DELETE FROM cart_items WHERE user_id = $1;`;
-const values3 = [user_id];
-await pool.query(query3, values3);
-return true;
-} catch (err) {
-console.log('Error adding new order to database', err);
-throw err;
-}
+        const query3 = `DELETE FROM cart_items WHERE user_id = $1;`;
+        const values3 = [user_id];
+        const result3 = await pool.query(query3, values3);
+        return true;
+    } catch (err) {
+        console.log('Error adding new order to database', err);
+        throw err;
+    }
 }
 
 const fetchOrders = async (user_id) => {
-const query = `SELECT users.user_id, order_items.product_id, order_items.quantity, order_items.subtotal, order_items.order_id,
-products.name AS title, categories.name AS category, orders.status, orders.order_date FROM order_items
-JOIN orders ON orders.order_id = order_items.order_id
-JOIN users ON users.user_id = orders.user_id
-JOIN products ON products.product_id = order_items.product_id
-JOIN categories ON categories.category_id = products.category_id
-WHERE orders.user_id = $1;`;
-const values = [user_id];
-try {
-const result = await pool.query(query, values);
-if (result.rowCount > 0) {
-return result.rows;
-} else {
-return false;
-}
-} catch (err) {
-console.log('Error fetching orders from database', err);
-throw err;
-}
+    const query = `SELECT users.user_id, order_items.product_id,order_items.quantity,order_items.subtotal, order_items.order_id,
+    products.name AS title, categories.name AS category,orders.status,orders,order_date FROM order_items
+    JOIN orders ON orders.order_id = order_items.order_id
+    JOIN users ON users.user_id = orders.user_id
+    JOIN products ON products.product_id = order_items.product_id
+    JOIN categories ON categories.category_id = products.category_id
+    WHERE orders.user_id = $1;`;
+    const values = [user_id];
+    try {
+        const result = await pool.query(query, values);
+        if (result.rowCount > 0) {
+            return result.rows;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        console.log('Error fetching orders from database', err);
+        throw err;
+    }
 }
 
 module.exports = {
-findByUsername,
-userExists,
-addNewUser,
-findUserByUsername,
-findUserById,
-queryProducts,
-pushToCart,
-cartExists,
-queryCartItems,
-queryCategoryProducts,
-deleteCartItem,
-updateItemQuantity,
-fetchAddress,
-addNewAddress,
-createNewOrder,
-fetchOrders,
-updateUserInfo
-};
+    findByUsername,
+    userExists,
+    addNewUser,
+    findUserByUsername,
+    findUserById,
+    queryProducts,
+    pushToCart,
+    cartExists,
+    queryCartItems,
+    queryCategoryProducts,
+    deleteCartItem,
+    updateItemQuantity,
+    fetchAddress,
+    addNewAddress,
+    createNewOrder,
+    fetchOrders,
+    updateUserInfo
+}

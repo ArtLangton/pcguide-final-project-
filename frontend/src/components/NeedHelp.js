@@ -16,8 +16,8 @@ function NeedHelp() {
                 document.body.appendChild(tooltip);
 
                 const updateTooltipPosition = (mouseX, mouseY) => {
-                    tooltip.style.top = `${mouseY + 10}px`;
-                    tooltip.style.left = `${mouseX + 10}px`; 
+                    tooltip.style.top = `${mouseY + 10}px`; // 10px offset to avoid overlap with cursor
+                    tooltip.style.left = `${mouseX + 10}px`; // 10px offset to avoid overlap with cursor
                 };
 
                 updateTooltipPosition(event.clientX, event.clientY);
