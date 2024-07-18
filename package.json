@@ -1,15 +1,17 @@
 {
   "name": "e-commerce-application-rest-api",
   "version": "1.0.0",
-  "description": "Welcome to ShopNex, a cutting-edge online store web application built using the PERN (PostgreSQL, Express.js, React.js, Node.js) stack. ShopNex aims to provide an exceptional shopping experience for customers while offering a seamless platform for merchants to manage their online businesses. Whether you're a small boutique owner or an aspiring entrepreneur, ShopNex equips you with the tools needed to succeed in the competitive e-commerce landscape.",
+  "description": "Welcome to pcparts",
   "main": "index.js",
   "scripts": {
+    "start": "node backend/server.js",
     "migrate": "cross-env DB_HOST=localhost DB_USER=admin_user DB_PASSWORD=admin1 DB_DATABASE=pcparts DB_PORT=5432 knex migrate:latest --knexfile knexfile.js",
     "frontend:build": "cd frontend && npm build",
     "frontend:start": "cd frontend && npm start",
     "backend:build": "cd backend && npm install",
     "backend:start": "cd backend && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
