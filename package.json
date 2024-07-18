@@ -1,14 +1,13 @@
 {
-    "name": "pc-parts",
-    "version": "1.0.0",
-    "scripts": {
-        "start": "npm run start-backend",
-        "start-backend": "cd backend && npm install && npm start",
-        "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
-    },
-    "engines": {
-      "node": "14.x"
-    },
-    "dependencies": {}
-  }
-  
+  "name": "pc-parts",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run start-backend",
+    "start-backend": "cd backend && npm install && npm start",
+    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {}
+}
