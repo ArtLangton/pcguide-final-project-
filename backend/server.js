@@ -24,32 +24,21 @@ app.use(cookieParser());
 const path = require("path");
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
-
-app.use(
-  cors({
-    origin: [
-      "https://localhost:3000",
-      "https://eshopify-online-store.onrender.com",
-      "https://eshopify-store.onrender.com",
-      "https://synthetixy.com",
-      "https://myapp.local:3000",
-    ],
-    credentials: true,
-  })
-);
+// CORS configuration
+app.use(cors({
+  origin: [
+    "https://localhost:3000",
+    "https://eshopify-online-store.onrender.com",
+    "https://eshopify-store.onrender.com",
+    "https://synthetixy.com",
+    "https://myapp.local:3000",
+  ],
+  credentials: true,
+}));
 
 app.use(
   session({
-    secret: process.env.SECRET_KEY || 'supersecret', 
+    secret: process.env.SECRET_KEY || 'supersecret',
     resave: false,
     saveUninitialized: false,
     store,
@@ -87,8 +76,8 @@ passport.deserializeUser(async (id, done) => {
 const authRoutes = require("./routes/routes");
 app.use("/auth", authRoutes);
 
-// Bind to the correct port for Heroku
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => {
+// Use the port defined by Heroku
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
