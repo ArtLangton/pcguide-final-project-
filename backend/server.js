@@ -14,11 +14,15 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");  // Added for serving static files
 const PORT = process.env.PORT || 5000;
+
+// Uncomment the following lines if you want to use HTTPS in local development
+/*
 const httpsOptions = {
   key: fs.readFileSync("localhost-key.pem"),
   cert: fs.readFileSync("localhost-cert.pem"),
 };
 const server = https.createServer(httpsOptions, app);
+*/
 
 // Store
 const store = new session.MemoryStore();
@@ -97,10 +101,6 @@ passport.deserializeUser(async (id, done) => {
 const authRoutes = require("./routes/routes");
 app.use("/auth", authRoutes);
 
-// app.listen(PORT, () => {
-//   console.log("Server is running on port " + PORT);
-// });
-
 const reload = () => {
   for (let i = 0; i < 10; i++) {
     let a = i * 1;
@@ -110,6 +110,13 @@ const reload = () => {
 setInterval(reload, 1000 * 60);
 
 // Development Related
+/*
 server.listen(PORT, () => {
   console.log(`Server running on https://localhost:${PORT}`);
+});
+*/
+
+// Production and Development
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
