@@ -70,15 +70,15 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-const authRoutes = require("./routes/routes");
-app.use("/auth", authRoutes);
+const authRoutes = require("./routes/routes/");
+app.use("/auth/", authRoutes);
 
 // Serve static files from the React app
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.use(express.static(path.join(__dirname, '../frontend/build/')));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/build/', 'index.html'));
   });
 }
 
