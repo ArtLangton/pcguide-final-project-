@@ -16,8 +16,12 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "22.x"  },
+    "node": "22.x"
+  },
   "devDependencies": {
     "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
   }
 }
