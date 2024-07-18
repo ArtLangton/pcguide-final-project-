@@ -6,6 +6,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
+const path = require("path"); // For serving static files
+
 dotenv.config();
 const { findUserById } = require("./database/database");
 
@@ -20,36 +22,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Serve static files from the public directory
-const path = require("path");
-app.use(express.static(path.join(__dirname, 'public')));  // Added line
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
-
-app.use(
-  cors({
-    origin: [
-      "https://localhost:3000",
-      "https://eshopify-online-store.onrender.com",
-      "https://eshopify-store.onrender.com",
-      "https://synthetixy.com",
-      "https://myapp.local:3000",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: [
+    "https://localhost:3000",
+    "https://eshopify-online-store.onrender.com",
+    "https://eshopify-store.onrender.com",
+    "https://synthetixy.com",
+    "https://myapp.local:3000",
+  ],
+  credentials: true,
+}));
 
 app.use(
   session({
-    secret: process.env.SECRET_KEY || 'supersecret', 
+    secret: process.env.SECRET_KEY || 'supersecret',
     resave: false,
     saveUninitialized: false,
     store,
@@ -62,10 +48,9 @@ app.use(
   })
 );
 
-// Comment out trust proxy temporarily
-// if (process.env.ENVIRONMENT === "PRODUCTION") {
-//   app.set("trust proxy", 1);
-// }
+if (process.env.ENVIRONMENT === "PRODUCTION") {
+  app.set("trust proxy", 1);
+}
 
 app.use(passport.authenticate("session"));
 
@@ -88,8 +73,18 @@ passport.deserializeUser(async (id, done) => {
 const authRoutes = require("./routes/routes");
 app.use("/auth", authRoutes);
 
-// Bind to the port provided by Heroku
-const PORT = process.env.PORT || 3000;
+// Serve static files from the React app
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
+
+// Set the port
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
