@@ -1,14 +1,28 @@
 {
-  "name": "pc-parts",
+  "name": "e-commerce-application-rest-api",
   "version": "1.0.0",
+  "description": "Welcome to pcguide",
+  "main": "index.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+    "Start": "node backend/server.js",
+    "migrate": "cross-env DB_HOST=localhost DB_USER=admin_user DB_PASSWORD=admin1 DB_DATABASE=pcparts DB_PORT=5432 knex migrate:latest --knexfile knexfile.js",
+    "frontend:build": "cd frontend && npm build",
+    "frontend:start": "cd frontend && npm start",
+    "backend:build": "cd backend && npm install",
+    "backend:start": "cd backend && npm start"
+
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "engines": {
     "node": "22.x"
   },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3"
+  },
   "dependencies": {
-    "concurrently": "^7.0.0"
+    "npm-run-all": "^4.1.5"
   }
 }
