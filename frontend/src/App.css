@@ -1,0 +1,912 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.logo {
+  margin-right: 20px;
+  height: 35px; /* Adjust height as needed */
+  width: 35px; /* Ensure the width is auto to maintain aspect ratio */
+  max-width: 65px; /* Maximum width to fit within the header */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+  background-attachment: fixed; /* Ensure background is fixed */
+  z-index: -1; /* Ensure background is behind all elements */
+  margin: 0; /* Remove any default margin */
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive Design Styling */
+
+@media only screen and (max-width: 1600px) {
+  #product-card {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #user-container {
+    column-gap: 0rem;
+  }
+  #product-card {
+    width: 30%;
+  }
+}
+
+#product-card img {
+  max-width: 100%;
+  max-height: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 1024px) {
+  #user-container {
+    padding: 0;
+  }
+  #product-card {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .css-1mgcds5-MuiButtonBase-root-MuiTab-root {
+    font-size: 14px !important;
+  }
+
+  #profile-info-section h1 {
+    font-size: 1.7rem;
+  }
+  #product-card {
+    width: 46%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #logo li a img {
+    height: 65px;
+  }
+
+  #profile-info-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+  }
+
+  .item-image img {
+    max-width: 70%;
+    height: auto;
+  }
+
+  .item-actions {
+    flex: 0 0 10px;
+    text-align: center;
+  }
+
+  .order-container {
+    flex-direction: column;
+  }
+
+  .order-info-container>p {
+    font-size: 1.1rem;
+  }
+  .order-info-container > h2 {
+    font-size: 1.4rem;
+  }
+  #addresses-container h1 {
+    font-size: 1.5rem;
+  }
+  .cart-container h1 {
+    font-size: 1.5rem;
+  }
+  .cart-container {
+    width: 100%;
+    padding: 20px;
+  }
+  .cart-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Align items to the start (left) */
+  }
+  .cart-card {
+    width: 200px; /* Adjusted width for smaller size */
+    height: 150px; /* Adjusted height for smaller size */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .cart-card img {
+    max-width: 100%;
+    max-height: 80px; /* Adjusted max height for smaller images */
+    object-fit: contain;
+  }
+  
+  .cart-card .links {
+    margin-top: 10px;
+    text-align: left; /* Align links to the left */
+  }
+  
+  .cart-card .links a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+  
+  .cart-card .links a:hover {
+    text-decoration: underline;
+  }
+  
+  .cart-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .cart-item-row .cart-card {
+    flex: 1;
+  }
+  
+  .cart-item-row .cart-links {
+    flex: 1;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  .cart-item-row .cart-links a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+  
+  .cart-item-row .cart-links a:hover {
+    text-decoration: underline;
+  }
+  #orders-page h1 {
+    font-size: 1.5rem;
+  }
+  #product-card {
+    width: 100%;
+  }
+  #menu-list {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  header ul {
+    padding: 0 5px;
+  }
+
+  .fa-cart-arrow-down {
+    padding: 4px 8px 4px 4px;
+    font-size: 23px;
+  }
+
+  #user-control li a button {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+
+  #user-control li img {
+    height: 32px;
+  }
+
+  #tabs-container {
+    width: 25%;
+  }
+
+  #profile-content {
+    width: 75%;
+  }
+
+  #profile-info p {
+    font-size: 1.1rem;
+  }
+
+  .css-19kzrtu {
+    padding: 10px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+  }
+
+  .item-image img {
+    max-width: 70%;
+    height: auto;
+  }
+
+  .item-actions {
+    flex: 0 0 10px;
+    text-align: center;
+  }
+
+  .order-container {
+    flex-direction: column;
+  }
+
+  .order-info-container>p {
+    font-size: 1.1rem;
+  }
+  #product-card {
+    width: 100%;
+  }
+  #menu-list {
+    font-size: 0.8rem;
+    column-gap: 0.3rem;
+  }
+  #logo li a img {
+    height: 55px;
+  }
+}
+
+/* Add this to ensure the text stays on one line */
+.nav-link-need-help {
+  display: inline-block;
+  white-space: nowrap; /* Ensures the text stays on one line */
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
+  text-align: center; /* Center the text */
+}
+
+#menu-list li {
+  display: inline; /* Ensure list items are inline */
+}
+
+#menu-list {
+  display: flex; /* Flexbox layout for menu list */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+/* New styles for header layout */
+header {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 139, 0.2); /* Gray-blue shadow */
+  padding: 25px 25px; /* Horizontal padding: 10px on left and right */
+  margin: 0 70px; /* Margin: 10px on left and right */
+  border-radius: 15px; /* Rounded corners */
+  height: 50px; /* Reduced height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  z-index: 10; /* Ensure header is above background */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left-menu, .right-menu {
+  display: flex;
+  align-items: center;
+}
+
+.left-menu a, .right-menu a {
+  margin: 0 10px;
+  color: #000; /* Black color for text */
+  text-decoration: none;
+}
+
+.header-button {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  color: #fff;
+  background: #8e2de2; /* Purple gradient */
+  background: linear-gradient(to right, #8e2de2, #4a00e0); /* Purple gradient */
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header-button:hover {
+  box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.23);
+}
+
+.header-button:active {
+  box-shadow: 0 8px 30px 0 rgba(0, 118, 255, 0.19);
+}
+
+.header-button:focus {
+  outline: none;
+}
+
+.logo {
+  margin-right: 20px;
+  height: 25px; /* Adjust height as needed */
+  width: auto; /* Ensure the width is auto to maintain aspect ratio */
+  max-width: 55px; /* Maximum width to fit within the header */
+}
+
+.nav-link-active {
+  font-weight: bold;
+}
+
+.header-message {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-right: 130px;
+  color: #000; /* Цвет текста */
+  transition: opacity 1s ease-in-out;
+}
+
+.header-message.fade {
+  opacity: 0;
+}
+
+.right-menu button {
+  margin: 0 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.right-menu img {
+  height: 32px;
+}
+
+.btn-8 {
+  background-color: #f0ecfc;
+  background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
+  line-height: 22px;
+  padding: 10px 20px;  /* Adjust padding for rectangular shape */
+  border: none;
+  position: fixed;
+  border-radius: 4px;
+  top: 70px; /* Adjust the value to move the button lower */
+  right: 70px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10; /* Ensure button is above background */
+}
+.btn-8 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-8:before,
+.btn-8:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.btn-8:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-8:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-8:hover:before {
+  height: 100%;
+}
+.btn-8:hover:after {
+  width: 100%;
+}
+.btn-8:hover {
+  background: white;
+}
+.btn-8 span:hover {
+  color: #c797eb;
+}
+.btn-8 span:before,
+.btn-8 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.btn-8 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-8 span:after {
+  height: 2px;
+  width: 0%;
+}
+.btn-8 span:hover:before {
+  height: 100%;
+}
+.btn-8 span:hover:after {
+  width: 100%;
+}
+
+/* Add this to ensure the text stays on one line */
+.nav-link-need-help {
+  display: inline-block;
+  white-space: nowrap; /* Ensures the text stays on one line */
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
+  text-align: center; /* Center the text */
+}
+
+#menu-list li {
+  display: inline; /* Ensure list items are inline */
+}
+
+#menu-list {
+  display: flex; /* Flexbox layout for menu list */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+/* New styles for header layout */
+header {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 139, 0.2); /* Gray-blue shadow */
+  padding: 25px 25px; /* Horizontal padding: 10px on left and right */
+  margin: 0 70px; /* Margin: 10px on left and right */
+  border-radius: 15px; /* Rounded corners */
+  height: 50px; /* Reduced height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  z-index: 10; /* Ensure header is above background */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left-menu, .right-menu {
+  display: flex;
+  align-items: center;
+}
+
+.left-menu a, .right-menu a {
+  margin: 0 10px;
+  color: #000; /* Black color for text */
+  text-decoration: none;
+}
+
+.header-button {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  color: #fff;
+  background: #8e2de2; /* Purple gradient */
+  background: linear-gradient(to right, #8e2de2, #4a00e0); /* Purple gradient */
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header-button:hover {
+  box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.23);
+}
+
+.header-button:active {
+  box-shadow: 0 8px 30px 0 rgba(0, 118, 255, 0.19);
+}
+
+.header-button:focus {
+  outline: none;
+}
+
+.logo {
+  margin-right: 20px;
+  height: 25px; /* Adjust height as needed */
+  width: auto; /* Ensure the width is auto to maintain aspect ratio */
+  max-width: 55px; /* Maximum width to fit within the header */
+}
+
+.nav-link-active {
+  font-weight: bold;
+}
+
+.header-message {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-right: 130px;
+  color: #000; /* Цвет текста */
+  transition: opacity 1s ease-in-out;
+}
+
+.header-message.fade {
+  opacity: 0;
+}
+
+.right-menu button {
+  margin: 0 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.right-menu img {
+  height: 32px;
+}
+
+/* Add this to ensure the text stays on one line */
+.nav-link-need-help {
+  display: inline-block;
+  white-space: nowrap; /* Ensures the text stays on one line */
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
+  text-align: center; /* Center the text */
+}
+#menu-list li {
+  display: inline; /* Ensure list items are inline */
+}
+
+#menu-list {
+  display: flex; /* Flexbox layout for menu list */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+/* New styles for header layout */
+header {
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 139, 0.2); /* Gray-blue shadow */
+  padding: 25px 25px; /* Horizontal padding: 10px on left and right */
+  margin: 0 70px; /* Margin: 10px on left and right */
+  border-radius: 15px; /* Rounded corners */
+  height: 50px; /* Reduced height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  z-index: 10; /* Ensure header is above background */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left-menu, .right-menu {
+  display: flex;
+  align-items: center;
+}
+
+.left-menu a, .right-menu a {
+  margin: 0 10px;
+  color: #000; /* Black color for text */
+  text-decoration: none;
+}
+
+.header-button {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  color: #fff;
+  background: #8e2de2; /* Purple gradient */
+  background: linear-gradient(to right, #8e2de2, #4a00e0); /* Purple gradient */
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header-button:hover {
+  box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.23);
+}
+
+.header-button:active {
+  box-shadow: 0 8px 30px 0 rgba(0, 118, 255, 0.19);
+}
+
+.header-button:focus {
+  outline: none;
+}
+
+.logo {
+  margin-right: 20px;
+  height: 25px; /* Adjust height as needed */
+  width: auto; /* Ensure the width is auto to maintain aspect ratio */
+  max-width: 55px; /* Maximum width to fit within the header */
+}
+
+.nav-link-active {
+  font-weight: bold;
+}
+
+.header-message {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-right: 130px;
+  color: #000; /* Цвет текста */
+  transition: opacity 1s ease-in-out;
+}
+
+.header-message.fade {
+  opacity: 0;
+}
+
+.right-menu button {
+  margin: 0 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.right-menu img {
+  height: 32px;
+}
+
+.btn-8 {
+  background-color: #f0ecfc;
+  background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
+  line-height: 22px;
+  padding: 10px 20px;  /* Adjust padding for rectangular shape */
+  border: none;
+  position: fixed;
+  border-radius: 4px;
+  top: 70px; /* Adjust the value to move the button lower */
+  right: 70px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10; /* Ensure button is above background */
+}
+.btn-8 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-8:before,
+.btn-8:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.btn-8:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-8:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-8:hover:before {
+  height: 100%;
+}
+.btn-8:hover:after {
+  width: 100%;
+}
+.btn-8:hover {
+  background: white;
+}
+.btn-8 span:hover {
+  color: #c797eb;
+}
+.btn-8 span:before,
+.btn-8 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.btn-8 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-8 span:after {
+  height: 2px;
+  width: 0%;
+}
+.btn-8 span:hover:before {
+  height: 100%;
+}
+.btn-8 span:hover:after {
+  width: 100%;
+}
+
+/* Add this CSS to support the tooltips */
+.tooltip {
+  position: absolute;
+  background-color: #e0f7fa; /* Light blue background */
+  color: black; /* Black text */
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  pointer-events: none; /* Prevents tooltip from blocking other elements */
+  transform: translate(-50%, -10px); /* Center above the cursor */
+}
+
+.need-help-page {
+  padding: 20px;
+}
+
+.recommend-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 1375px; /* Align with header width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recommend-items {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 420px;
+}
+
+.recommend-items .category-item {
+  margin-left: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.recommend-items .category-item:hover {
+  transform: scale(1.05);
+}
+
+.learn-more-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1375px; /* Align with header width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learn-more-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  margin-top: 30px; /* Add margin to create space between header and content */
+}
+
+.learn-more-image {
+  width: 50%;
+  position: relative;
+}
+
+.learn-more-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Ensure buttons are above the image */
+}
+
+.overlay-button {
+  position: absolute;
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  background-color: transparent; /* No background color */
+  border: none; /* No border */
+  cursor: pointer;
+  z-index: 2; /* Ensure buttons are above other elements */
+}
+
+.learn-more-article {
+  width: 50%;
+  padding: 20px;
+}
+
+.learn-more-article h2 {
+  margin-bottom: 15px;
+}
+
+.learn-more-article h3 {
+  margin-bottom: 15px;
+}
+
+.learn-more-article h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.learn-more-article p {
+  margin-bottom: 10px;
+}
+
+.learn-more-article ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#user-container {
+  margin-top: 30px; /* Add this line to create space between header and user container */
+}
